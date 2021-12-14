@@ -1,20 +1,32 @@
-import React, {useState} from 'react'
-import "./App.css"
-
+import React, { useState, useEffect } from "react";
+import "./App.css";
 
 function App() {
-  const [position, setPosition] = useState(0)
+  const [renderData, setRenderData] = useState([]);
 
-  const handleShift = () => {
-    setPosition(position+50)
-  }
+  useEffect(() => {
+    try {
+      const fetchData = async () => {
+        const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+        const data = await res.json();
+        setRenderData(data);
+      };
+      fetchData();
+    } catch (error) {
+      console.error(error);
+    }
+  }, []);
 
   return (
-    <div className='App'>
-      <div style={{transform: `translateX(${position}px)`}} className='rectangle'></div>
-      <button onClick={handleShift} className='shift_right'>Shift Right</button>
+    <div className="App">
+      <h1>Hey</h1>
+      {renderData.map((post) => (
+        <p key={post.id}>
+          {post.userId}: {post.title}
+        </p>
+      ))}
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
