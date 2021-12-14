@@ -1,35 +1,20 @@
-const authors = [
-  {
-    name: "Jacky",
-    books: ["Back", "Red", "Orange"],
-  },
-  {
-    name: "Tommy",
-    books: ["White", "Gray", "Silver"],
-  },
-  {
-    name: "Ryan",
-    books: ["Lion", "Turtles", "Fox"],
-  },
-  {
-    name: "Becks",
-    books: ["Fighter", "Coder", "Driver"],
-  },
-];
+import React, {useState} from 'react'
+import "./App.css"
+
 
 function App() {
+  const [position, setPosition] = useState(0)
+
+  const handleShift = () => {
+    setPosition(position+50)
+  }
+
   return (
-    <div className="App" style={{marginLeft: "2rem"}}>
-      {authors.map((author) => (
-        <div key={author.name}>
-          <h1>Author: {author.name}</h1>
-          <h2>Books: {author.books.map((book => (
-            <p style={{display: "inline", marginRight: "1rem", borderBottom: "1px solid black"}}>{book}</p>
-          )))}</h2>
-        </div>
-      ))}
+    <div className='App'>
+      <div style={{transform: `translateX(${position}px)`}} className='rectangle'></div>
+      <button onClick={handleShift} className='shift_right'>Shift Right</button>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

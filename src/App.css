@@ -1,0 +1,15 @@
+.App {
+  height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rectangle {
+  position: absolute;
+  left: 0;
+  width: 5rem;
+  height: 3rem;
+  background-color: red;
+}
